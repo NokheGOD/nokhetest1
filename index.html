@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대학생 연애 설문조사</title>
+    <title>오늘 저녁 뭐 먹지?</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,30 +14,11 @@
         </label>
     </div>
     <div class="container">
-        <h1>대학생 연애 설문조사</h1>
-        <form action="https://formspree.io/f/xwvldazp" method="POST" class="survey-form">
-            <div class="form-group">
-                <label for="gender">성별:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male">남성</option>
-                    <option value="female">여성</option>
-                    <option value="other">기타</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="major">전공:</label>
-                <input type="text" id="major" name="major" required>
-            </div>
-            <div class="form-group">
-                <label for="appearance">연인에게 외모는 얼마나 중요한가요? (1-5)</label>
-                <input type="range" id="appearance" name="appearance" min="1" max="5" step="1" required>
-            </div>
-            <div class="form-group">
-                <label for="ideal-date">이상적인 첫 데이트는 무엇인가요?</label>
-                <textarea id="ideal-date" name="ideal-date" rows="5" required></textarea>
-            </div>
-            <button type="submit">제출하기</button>
-        </form>
+        <h1>오늘 저녁 뭐 먹지?</h1>
+        <div id="suggestion-container" class="suggestion-container">
+            <p id="suggestion-text">버튼을 눌러 저녁 메뉴를 추천 받으세요!</p>
+        </div>
+        <button id="suggest-button">메뉴 추천 받기</button>
     </div>
     <script src="main.js"></script>
 </body>

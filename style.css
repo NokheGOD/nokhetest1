@@ -89,7 +89,7 @@ input:checked + .slider:before {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
 h1 {
@@ -97,47 +97,23 @@ h1 {
     color: var(--text-color);
 }
 
-.survey-form {
-    width: 100%;
-    text-align: left;
+.suggestion-container {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 2px dashed var(--text-color);
+    border-radius: 10px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 10px;
+#suggestion-text {
+    font-size: 24px;
     font-weight: bold;
-    color: var(--text-color);
 }
 
-.survey-form input[type="text"],
-.survey-form select,
-.survey-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s, border-color 0.3s;
-    box-sizing: border-box;
-}
-
-.survey-form input[type="range"] {
-    width: 100%;
-}
-
-.survey-form input:focus,
-.survey-form select:focus,
-.survey-form textarea:focus {
-    border-color: var(--button-bg-color);
-    outline: none;
-}
-
-.survey-form button[type="submit"] {
+#suggest-button {
     width: 100%;
     padding: 15px 30px;
     font-size: 18px;
@@ -148,10 +124,9 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
-    margin-top: 20px;
 }
 
-.survey-form button[type="submit"]:hover {
+#suggest-button:hover {
     background-color: var(--button-hover-bg-color);
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
 }
