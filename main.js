@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const themeSwitch = document.getElementById('theme-switch');
+    const body = document.body;
+
+    themeSwitch.addEventListener('change', () => {
+        body.classList.toggle('dark-mode');
+    });
+
     const drawButton = document.getElementById('draw-button');
     const numbersContainer = document.getElementById('numbers-container');
 

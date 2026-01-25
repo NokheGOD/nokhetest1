@@ -1,25 +1,96 @@
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg-color: white;
+    --text-color: #333;
+    --button-bg-color: #4a90e2;
+    --button-text-color: white;
+    --button-hover-bg-color: #357abd;
+}
+
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --container-bg-color: #2c2c2c;
+    --text-color: #f0f2f5;
+    --button-bg-color: #555;
+    --button-text-color: #f0f2f5;
+    --button-hover-bg-color: #777;
+}
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f2f5;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-switcher label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switcher input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4a90e2;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
 .container {
     text-align: center;
-    background-color: white;
+    background-color: var(--container-bg-color);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
 }
 
 h1 {
     margin-bottom: 30px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .numbers-container {
@@ -47,14 +118,14 @@ h1 {
     font-size: 18px;
     border: none;
     border-radius: 10px;
-    background-color: #4a90e2;
-    color: white;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
 }
 
 #draw-button:hover {
-    background-color: #357abd;
+    background-color: var(--button-hover-bg-color);
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
 }
