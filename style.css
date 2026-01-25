@@ -130,19 +130,14 @@ h1 {
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
 }
 
-.contact-form-container {
-    background-color: var(--container-bg-color);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.contact-form {
     margin-top: 40px;
     width: 100%;
     max-width: 500px;
     text-align: center;
-    transition: background-color 0.3s;
 }
 
-.contact-form-container h2 {
+.contact-form h2 {
     margin-bottom: 30px;
     color: var(--text-color);
 }
@@ -162,13 +157,14 @@ h1 {
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s, border-color 0.3s;
+    box-sizing: border-box;
 }
 
 .contact-form input[type="text"]:focus,
