@@ -30,10 +30,24 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.theme-switcher {
+.top-bar {
     position: absolute;
     top: 20px;
     right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.language-switcher {
+    margin-left: 20px;
+}
+
+#language-select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: var(--container-bg-color);
+    color: var(--text-color);
 }
 
 .theme-switcher label {
@@ -92,8 +106,11 @@ input:checked + .slider:before {
     max-width: 500px;
 }
 
-h1 {
+.header-container {
     margin-bottom: 30px;
+}
+
+h1 {
     color: var(--text-color);
 }
 
@@ -114,7 +131,8 @@ h1 {
     font-weight: bold;
 }
 
-#suggestion-image {
+#suggestion-image,
+#food-image {
     max-width: 100%;
     max-height: 300px;
     border-radius: 10px;

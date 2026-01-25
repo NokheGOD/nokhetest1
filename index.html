@@ -1,25 +1,36 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오늘 저녁 뭐 먹지?</title>
+    <title data-translate="pageTitle">What should I eat for dinner?</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="theme-switcher">
-        <label for="theme-switch">
-            <input type="checkbox" id="theme-switch">
-            <span class="slider"></span>
-        </label>
+    <div class="top-bar">
+        <div class="theme-switcher">
+            <label for="theme-switch">
+                <input type="checkbox" id="theme-switch">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="language-switcher">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="ko">한국어</option>
+            </select>
+        </div>
     </div>
     <div class="container">
-        <h1>오늘 저녁 뭐 먹지?</h1>
-        <div id="suggestion-container" class="suggestion-container">
-            <p id="suggestion-text">버튼을 눌러 저녁 메뉴를 추천 받으세요!</p>
-            <img id="suggestion-image" src="2.png" alt="혼자 집밥" style="display: none;">
+        <div class="header-container">
+            <h1 data-translate="pageHeader">What should I eat for dinner?</h1>
         </div>
-        <button id="suggest-button">메뉴 추천 받기</button>
+        <div id="suggestion-container" class="suggestion-container">
+            <p id="suggestion-text" data-translate="suggestionText">Press the button to get a dinner suggestion!</p>
+            <img id="suggestion-image" src="2.png" alt="혼자 집밥" style="display: none;">
+            <img id="food-image" src="food.jpg" alt="Food" style="display: none;">
+        </div>
+        <button id="suggest-button" data-translate="suggestButton">Get a suggestion</button>
     </div>
     <script src="main.js"></script>
 </body>
