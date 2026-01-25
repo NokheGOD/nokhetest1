@@ -5,32 +5,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const translations = {
         en: {
-            pageTitle: "What should I eat for dinner?",
-            pageHeader: "What should I eat for dinner?",
-            suggestionText: "Press the button to get a dinner suggestion!",
-            suggestButton: "Get a suggestion",
-            dinnerOptions: [
-                'Chicken', 'Pizza', 'Hamburger', 'Sushi', 'Pasta', 'Ramen', 'Kimchi Jjigae', 'Doenjang Jjigae', 'Samgyeopsal', 'Jokbal', 'Bossam', 'Tteokbokki', 'Sundae', 'Fries', 'Eating at home'
+            pageTitle: "Hobby Recommendation",
+            pageHeader: "Hobby Recommendation",
+            suggestionText: "Press the button to get a hobby recommendation!",
+            suggestButton: "Get a recommendation",
+            hobbyOptions: [
+                'Reading', 'Writing', 'Drawing', 'Painting', 'Playing a musical instrument', 'Singing', 'Dancing', 'Cooking', 'Baking', 'Gardening', 'Hiking', 'Camping', 'Knitting', 'Sewing', 'Photography', 'Yoga', 'Meditation', 'Coding', 'Gaming', 'Watching movies'
             ]
         },
         ko: {
-            pageTitle: "오늘 저녁 뭐 먹지?",
-            pageHeader: "오늘 저녁 뭐 먹지?",
-            suggestionText: "버튼을 눌러 저녁 메뉴를 추천 받으세요!",
-            suggestButton: "메뉴 추천 받기",
-            dinnerOptions: [
-                '치킨', '피자', '햄버거', '초밥', '파스타', '라면', '김치찌개', '된장찌개', '삼겹살', '족발', '보쌈', '떡볶이', '순대', '튀김', '혼자 집밥'
+            pageTitle: "취미 추천",
+            pageHeader: "취미 추천",
+            suggestionText: "버튼을 눌러 취미를 추천 받으세요!",
+            suggestButton: "취미 추천 받기",
+            hobbyOptions: [
+                '독서', '글쓰기', '그림 그리기', '페인팅', '악기 연주', '노래 부르기', '춤추기', '요리', '베이킹', '정원 가꾸기', '하이킹', '캠핑', '뜨개질', '바느질', '사진 촬영', '요가', '명상', '코딩', '게임', '영화 감상'
             ]
         }
     };
 
+    let currentHobbies = translations[languageSelect.value].hobbyOptions;
+
     const updateLanguage = (lang) => {
         document.querySelectorAll('[data-translate]').forEach(element => {
             const key = element.getAttribute('data-translate');
-            element.textContent = translations[lang][key];
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
         });
         document.title = translations[lang].pageTitle;
-        dinnerOptions = translations[lang].dinnerOptions;
+        currentHobbies = translations[lang].hobbyOptions;
     };
 
     languageSelect.addEventListener('change', (event) => {
@@ -43,24 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const suggestButton = document.getElementById('suggest-button');
     const suggestionText = document.getElementById('suggestion-text');
-    const suggestionImage = document.getElementById('suggestion-image');
-    const foodImage = document.getElementById('food-image');
-
-    let dinnerOptions = translations[languageSelect.value].dinnerOptions;
 
     suggestButton.addEventListener('click', () => {
-        const randomIndex = Math.floor(Math.random() * dinnerOptions.length);
-        const selectedOption = dinnerOptions[randomIndex];
+        const randomIndex = Math.floor(Math.random() * currentHobbies.length);
+        const selectedHobby = currentHobbies[randomIndex];
         
-        suggestionText.textContent = selectedOption;
-
-        if (selectedOption === '혼자 집밥' || selectedOption === 'Eating at home') {
-            suggestionImage.style.display = 'block';
-            foodImage.style.display = 'none';
-        } else {
-            suggestionImage.style.display = 'none';
-            foodImage.style.display = 'block';
-        }
+        suggestionText.textContent = selectedHobby;
     });
 
     // Initial language setup
