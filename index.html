@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로또 번호 추첨기</title>
+    <title>대학생 연애 설문조사</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,28 +14,30 @@
         </label>
     </div>
     <div class="container">
-        <h1>로또 번호 추첨기</h1>
-        <div id="numbers-container" class="numbers-container"></div>
-        <button id="draw-button">번호 추첨</button>
-
-        <div class="contact-form" style="margin-top: 40px;">
-            <h2>제휴 문의</h2>
-            <form action="https://formspree.io/f/xwvldazp" method="POST">
-                <div class="form-group">
-                    <label for="name">이름:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">이메일:</label>
-                    <input type="email" id="email" name="_replyto" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">메시지:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit">문의하기</button>
-            </form>
-        </div>
+        <h1>대학생 연애 설문조사</h1>
+        <form action="https://formspree.io/f/xwvldazp" method="POST" class="survey-form">
+            <div class="form-group">
+                <label for="gender">성별:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">남성</option>
+                    <option value="female">여성</option>
+                    <option value="other">기타</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="major">전공:</label>
+                <input type="text" id="major" name="major" required>
+            </div>
+            <div class="form-group">
+                <label for="appearance">연인에게 외모는 얼마나 중요한가요? (1-5)</label>
+                <input type="range" id="appearance" name="appearance" min="1" max="5" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="ideal-date">이상적인 첫 데이트는 무엇인가요?</label>
+                <textarea id="ideal-date" name="ideal-date" rows="5" required></textarea>
+            </div>
+            <button type="submit">제출하기</button>
+        </form>
     </div>
     <script src="main.js"></script>
 </body>

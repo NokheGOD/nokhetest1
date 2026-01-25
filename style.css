@@ -23,8 +23,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -86,6 +88,8 @@ input:checked + .slider:before {
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
+    width: 100%;
+    max-width: 600px;
 }
 
 h1 {
@@ -93,72 +97,27 @@ h1 {
     color: var(--text-color);
 }
 
-.numbers-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.number-ball {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#draw-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
-}
-
-#draw-button:hover {
-    background-color: var(--button-hover-bg-color);
-    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
-}
-
-.contact-form {
-    margin-top: 40px;
+.survey-form {
     width: 100%;
-    max-width: 500px;
-    text-align: center;
-}
-
-.contact-form h2 {
-    margin-bottom: 30px;
-    color: var(--text-color);
-}
-
-.contact-form .form-group {
-    margin-bottom: 20px;
     text-align: left;
 }
 
-.contact-form label {
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: bold;
     color: var(--text-color);
 }
 
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
+.survey-form input[type="text"],
+.survey-form select,
+.survey-form textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: var(--bg-color);
@@ -167,14 +126,19 @@ h1 {
     box-sizing: border-box;
 }
 
-.contact-form input[type="text"]:focus,
-.contact-form input[type="email"]:focus,
-.contact-form textarea:focus {
+.survey-form input[type="range"] {
+    width: 100%;
+}
+
+.survey-form input:focus,
+.survey-form select:focus,
+.survey-form textarea:focus {
     border-color: var(--button-bg-color);
     outline: none;
 }
 
-.contact-form button[type="submit"] {
+.survey-form button[type="submit"] {
+    width: 100%;
     padding: 15px 30px;
     font-size: 18px;
     border: none;
@@ -187,7 +151,7 @@ h1 {
     margin-top: 20px;
 }
 
-.contact-form button[type="submit"]:hover {
+.survey-form button[type="submit"]:hover {
     background-color: var(--button-hover-bg-color);
     box-shadow: 0 6px 20px rgba(74, 144, 226, 0.5);
 }
