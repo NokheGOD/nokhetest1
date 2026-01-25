@@ -104,6 +104,7 @@ h1 {
     border-radius: 10px;
     min-height: 100px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -111,6 +112,13 @@ h1 {
 #suggestion-text {
     font-size: 24px;
     font-weight: bold;
+}
+
+#suggestion-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 #suggest-button {
