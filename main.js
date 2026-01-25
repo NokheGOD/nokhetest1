@@ -148,14 +148,53 @@ submitBtn.addEventListener('click', () => {
     const result = calculateResult();
     mbtiType.textContent = result;
     
+    // Fill the hidden input for Formspree
+    const hiddenInput = document.getElementById('hidden-mbti');
+    if (hiddenInput) hiddenInput.value = result;
+
     // Simple animation for result
     resultContainer.style.display = 'block';
     resultContainer.scrollIntoView({ behavior: 'smooth' });
-    
-    // Hide survey to focus on result? Or keep it? Let's keep it but show result clearly.
-    // surveyContainer.style.display = 'none'; 
-    // submitBtn.style.display = 'none';
 });
+
+// Formspree Submission Logic
+const resultForm = document.getElementById('result-form');
+const formStatus = document.getElementById('form-status');
+
+if (resultForm) {
+    resultForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        const submitBtn = document.getElementById('send-form-btn');
+        
+        submitBtn.disabled = true;
+        submitBtn.textContent = '전송 중...';
+        
+        // IMPORTANT: Replace with your actual Formspree ID
+        fetch('https://formspree.io/f/xwvldazp', {
+            method: 'POST',
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                formStatus.textContent = "성공적으로 전송되었습니다! 🔥";
+                formStatus.style.color = "var(--accent-color)";
+                resultForm.reset();
+            } else {
+                formStatus.textContent = "전송에 실패했습니다. 다시 시도해주세요.";
+                formStatus.style.color = "#ff4d4d";
+            }
+        }).catch(error => {
+            formStatus.textContent = "오류가 발생했습니다.";
+            formStatus.style.color = "#ff4d4d";
+        }).finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = '결과 전송하기';
+        });
+    });
+}
 
 // Expose toggle function to global scope for HTML button
 window.toggleLanguage = () => {

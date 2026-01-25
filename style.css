@@ -229,6 +229,66 @@ h1 {
     line-height: 1;
 }
 
+/* Result Form Styling */
+.submit-form {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(128, 128, 128, 0.05);
+    border-radius: 20px;
+    border: 1px dashed var(--border-color);
+}
+
+.form-guide {
+    font-size: 0.9rem;
+    color: var(--text-sub);
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.input-group input[type="email"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-main);
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input[type="email"]:focus {
+    border-color: var(--accent-color);
+}
+
+#send-form-btn {
+    padding: 0.8rem 1.5rem;
+    background: var(--accent-color);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#send-form-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#form-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
 .retry-btn {
     background: transparent;
     color: var(--text-sub);

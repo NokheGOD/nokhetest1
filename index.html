@@ -34,6 +34,19 @@
             <div class="result-box">
                 <p id="mbti-type">ENFP</p>
             </div>
+            
+            <!-- Formspree Submission Form -->
+            <form id="result-form" class="submit-form">
+                <p class="form-guide">결과를 이메일로 받아보거나 저장하시겠습니까?</p>
+                <div class="input-group">
+                    <input type="email" name="email" id="user-email" placeholder="your@email.com" required>
+                    <!-- MBTI 결과가 여기에 자동으로 담깁니다 -->
+                    <input type="hidden" name="mbti_result" id="hidden-mbti">
+                    <button type="submit" id="send-form-btn">결과 전송하기</button>
+                </div>
+                <p id="form-status"></p>
+            </form>
+
             <button class="retry-btn" onclick="location.reload()">다시 하기 / Retry</button>
         </div>
     </div>
