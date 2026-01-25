@@ -1,36 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="pageTitle">Hobby Recommendation</title>
+    <title>MBTI VIBE</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a trendy look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top-bar">
-        <div class="theme-switcher">
-            <label for="theme-switch">
-                <input type="checkbox" id="theme-switch">
-                <span class="slider"></span>
-            </label>
+    <nav class="navbar">
+        <div class="logo">MBTI_VIBE</div>
+        <div class="controls">
+            <button id="lang-toggle" onclick="toggleLanguage()">English</button>
+            <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
         </div>
-        <div class="language-switcher">
-            <select id="language-select">
-                <option value="en">English</option>
-                <option value="ko">한국어</option>
-            </select>
-        </div>
-    </div>
+    </nav>
+
     <div class="container">
-        <div class="header-container">
-            <h1 data-translate="pageHeader">Hobby Recommendation</h1>
+        <header>
+            <h1>MBTI 성격 유형 검사</h1>
+            <p class="subtitle">Find your true self in 1 minute.</p>
+        </header>
+        
+        <div id="survey-container"></div>
+        
+        <button id="submit-btn">결과 확인하기</button>
+        
+        <div id="result-container" style="display: none;">
+            <h2>당신의 MBTI 유형은:</h2>
+            <div class="result-box">
+                <p id="mbti-type">ENFP</p>
+            </div>
+            <button class="retry-btn" onclick="location.reload()">다시 하기 / Retry</button>
         </div>
-        <div id="suggestion-container" class="suggestion-container">
-            <p id="suggestion-text" data-translate="suggestionText">Press the button to get a hobby recommendation!</p>
-        </div>
-        <button id="suggest-button" data-translate="suggestButton">Get a recommendation</button>
-        <button id="select-button" data-translate="selectButton" style="display: none;">Select</button>
     </div>
+    
     <script src="main.js"></script>
+    <script>
+        // Simple Theme Toggle Logic inline for speed
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', savedTheme);
+        updateThemeBtn(savedTheme);
+
+        function toggleTheme() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeBtn(newTheme);
+        }
+
+        function updateThemeBtn(theme) {
+            themeBtn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+        }
+    </script>
 </body>
 </html>
