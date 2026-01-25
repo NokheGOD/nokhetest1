@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MBTI_VIBE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: var(--accent-color);">MBTI_VIBE</a></div>
+        <div class="controls">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="blog.html" class="nav-link">BLOG</a>
+            <a href="contact.html" class="nav-link active">CONTACT</a>
+            <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>문의하기</h1>
+            <p class="subtitle">궁금한 점이나 제안하고 싶은 내용이 있다면 언제든 알려주세요.</p>
+        </header>
+        
+        <form id="contact-form" class="submit-form" style="text-align: left; max-width: 500px; margin: 0 auto;">
+            <div class="input-group" style="display: block; margin-bottom: 1rem;">
+                <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">이메일</label>
+                <input type="email" name="email" id="email" placeholder="your@email.com" required style="width: 100%; box-sizing: border-box;">
+            </div>
+            
+            <div class="input-group" style="display: block; margin-bottom: 1rem;">
+                <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">메시지</label>
+                <textarea name="message" id="message" rows="5" placeholder="내용을 입력해주세요." required style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); font-family: inherit; box-sizing: border-box;"></textarea>
+            </div>
+
+            <button type="submit" id="send-btn" style="width: 100%;">보내기</button>
+            <p id="form-status" style="text-align: center;"></p>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MBTI_VIBE. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Shared Theme Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', savedTheme);
+        updateThemeBtn(savedTheme);
+
+        function toggleTheme() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeBtn(newTheme);
+        }
+
+        function updateThemeBtn(theme) {
+            themeBtn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+        }
+
+        // Contact Form Logic
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(e.target);
+            const submitBtn = document.getElementById('send-btn');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = '전송 중...';
+            
+            // Using the same Formspree ID
+            fetch('https://formspree.io/f/xzdelnob', {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    formStatus.textContent = "메시지가 성공적으로 전송되었습니다!";
+                    formStatus.style.color = "var(--accent-color)";
+                    form.reset();
+                } else {
+                    formStatus.textContent = "전송 실패. 다시 시도해주세요.";
+                    formStatus.style.color = "#ff4d4d";
+                }
+            }).catch(error => {
+                formStatus.textContent = "오류가 발생했습니다.";
+                formStatus.style.color = "#ff4d4d";
+            }).finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '보내기';
+            });
+        });
+    </script>
+</body>
+</html>

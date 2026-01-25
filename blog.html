@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - MBTI_VIBE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: var(--accent-color);">MBTI_VIBE</a></div>
+        <div class="controls">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="blog.html" class="nav-link active">BLOG</a>
+            <a href="contact.html" class="nav-link">CONTACT</a>
+            <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 800px;">
+        <header>
+            <h1>MBTI Insight</h1>
+            <p class="subtitle">성격 유형에 대한 재미있는 이야기들을 만나보세요.</p>
+        </header>
+        
+        <div class="blog-list">
+            <article class="blog-post">
+                <h2>MBTI 검사의 유래와 역사</h2>
+                <p class="post-meta">2026. 01. 25 | Editor</p>
+                <p class="post-excerpt">MBTI(마이어스-브릭스 유형 지표)는 작가 캐서린 쿡 브릭스와 그녀의 딸 이자벨 브릭스 마이어스가 카를 융의 초기 분석심리학 모델을 바탕으로 1944년에 개발한 성격 유형 검사입니다. 사람들은 저마다 타고난 선호 경향이 있다는 가설을 바탕으로...</p>
+                <a href="#" class="read-more">더 읽기</a>
+            </article>
+
+            <article class="blog-post">
+                <h2>I형(내향형)과 E형(외향형)의 결정적 차이</h2>
+                <p class="post-meta">2026. 01. 24 | Editor</p>
+                <p class="post-excerpt">많은 사람들이 '활발하면 E, 조용하면 I'라고 오해하곤 합니다. 하지만 진짜 차이는 '에너지를 어디서 얻느냐'에 있습니다. 외향형은 외부 활동과 사람들과의 교류에서 에너지를 얻는 반면, 내향형은 혼자만의 시간과 내면의 활동을 통해 에너지를 충전합니다...</p>
+                <a href="#" class="read-more">더 읽기</a>
+            </article>
+
+            <article class="blog-post">
+                <h2>직관형(N)이 세상을 바라보는 방식</h2>
+                <p class="post-meta">2026. 01. 20 | Editor</p>
+                <p class="post-excerpt">현실적이고 오감에 의존하는 감각형(S)과 달리, 직관형(N)은 이면의 의미와 가능성, 그리고 미래에 초점을 맞춥니다. 숲을 보기보다는 나무를 보는 S형과 달리, N형은 숲 전체의 흐름과 패턴을 읽으려 노력합니다. 이러한 특성은 창의적인 문제 해결에...</p>
+                <a href="#" class="read-more">더 읽기</a>
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MBTI_VIBE. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+    
+    <script>
+        // Shared Theme Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', savedTheme);
+        updateThemeBtn(savedTheme);
+
+        function toggleTheme() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeBtn(newTheme);
+        }
+
+        function updateThemeBtn(theme) {
+            themeBtn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+        }
+    </script>
+</body>
+</html>
