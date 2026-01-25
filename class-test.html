@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Class Test</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: var(--accent-color);">MBTI_VIBE</a></div>
+        <div class="controls">
+            <button onclick="location.href='index.html'">HOME</button>
+            <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>나의 RPG 직업은?</h1>
+            <p class="subtitle">이세계에 떨어진 당신, 어떤 능력을 가졌을까?</p>
+        </header>
+        
+        <div id="survey-container"></div>
+        
+        <button id="submit-btn">직업 확인하기</button>
+        
+        <div id="result-container" style="display: none;">
+            <h2>당신의 직업은:</h2>
+            <div class="result-box">
+                <p id="class-type" style="font-size: 3rem; margin-bottom: 1rem;"></p>
+                <p id="class-desc" style="font-size: 1.2rem; color: var(--text-sub); line-height: 1.6;"></p>
+            </div>
+            
+            <button class="retry-btn" onclick="location.reload()">다시 테스트하기</button>
+            <button class="retry-btn" onclick="location.href='index.html'" style="margin-top: 10px;">메인으로 돌아가기</button>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <div id="disqus_thread"></div>
+            <script>
+                (function() { 
+                var d = document, s = d.createElement('script');
+                s.src = 'https://nokhe.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+        </div>
+    </div>
+    
+    <script src="class-test.js"></script>
+    <script>
+        // Shared Theme Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', savedTheme);
+        updateThemeBtn(savedTheme);
+
+        function toggleTheme() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeBtn(newTheme);
+        }
+
+        function updateThemeBtn(theme) {
+            themeBtn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+        }
+    </script>
+</body>
+</html>
