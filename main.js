@@ -171,7 +171,7 @@ if (resultForm) {
         submitBtn.textContent = '전송 중...';
         
         // IMPORTANT: Replace with your actual Formspree ID
-        fetch('https://formspree.io/f/xwvldazp', {
+        fetch('https://formspree.io/f/xzdelnob', {
             method: 'POST',
             body: data,
             headers: {
