@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI VIBE</title>
+    <title>Debut Concept Test</title>
     <meta name="google-adsense-account" content="ca-pub-2231008082591359">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2231008082591359" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for a trendy look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">MBTI_VIBE</div>
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: var(--accent-color);">MBTI_VIBE</a></div>
         <div class="controls">
             <div class="dropdown">
                 <a href="#" class="nav-link">TESTS ▾</a>
@@ -29,15 +28,14 @@
             </div>
             <a href="blog.html" class="nav-link">BLOG</a>
             <a href="contact.html" class="nav-link">CONTACT</a>
-            <button id="lang-toggle" onclick="toggleLanguage()">English</button>
             <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
         </div>
     </nav>
 
     <div class="container">
         <header>
-            <h1>MBTI 성격 유형 검사</h1>
-            <p class="subtitle">Find your true self in 1 minute.</p>
+            <h1>나의 데뷔 컨셉은?</h1>
+            <p class="subtitle">무대 위 당신은 어떤 분위기일까요?</p>
         </header>
         
         <div class="progress-container">
@@ -46,50 +44,28 @@
 
         <div id="survey-container"></div>
         
-        <!-- Submit button removed for single-question flow -->
-        
         <div id="result-container" style="display: none;">
-            <h2>당신의 MBTI 유형은:</h2>
+            <h2>당신의 데뷔 컨셉은:</h2>
             <div class="result-box">
-                <p id="mbti-type">ENFP</p>
+                <p id="result-type" style="font-size: 2.5rem; margin-bottom: 1rem;"></p>
+                <p id="result-desc" style="font-size: 1.2rem; color: var(--text-sub); line-height: 1.6;"></p>
             </div>
             
-            <!-- Formspree Submission Form -->
-            <form id="result-form" class="submit-form">
-                <p class="form-guide">결과를 이메일로 받아보거나 저장하시겠습니까?</p>
-                <div class="input-group">
-                    <input type="email" name="email" id="user-email" placeholder="your@email.com" required>
-                    <!-- MBTI 결과가 여기에 자동으로 담깁니다 -->
-                    <input type="hidden" name="mbti_result" id="hidden-mbti">
-                    <button type="submit" id="send-form-btn">결과 전송하기</button>
-                </div>
-                <p id="form-status"></p>
-            </form>
-
-            <button class="retry-btn" onclick="location.reload()">다시 하기 / Retry</button>
+            <button class="retry-btn" onclick="location.reload()">다시 테스트하기 / Retry</button>
+            <button class="retry-btn" onclick="location.href='index.html'" style="margin-top: 10px; border-color: var(--accent-color); color: var(--accent-color);">✨ 다른 테스트 보러 가기</button>
         </div>
 
-        <!-- Disqus Comments Section -->
+        <!-- Comments Section -->
         <div class="comments-section">
             <div id="disqus_thread"></div>
             <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = window.location.href;  // Current page URL
-                this.page.identifier = 'mbti_vibe_main'; // Unique identifier for this page
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
+                (function() { 
                 var d = document, s = d.createElement('script');
                 s.src = 'https://nokhe.disqus.com/embed.js';
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
                 })();
             </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         </div>
     </div>
     
@@ -100,14 +76,12 @@
             <a href="contact.html">Contact Us</a>
         </div>
     </footer>
-
-    <script src="main.js"></script>
+    
+    <script src="kpop-concept-test.js"></script>
     <script>
-        // Simple Theme Toggle Logic inline for speed
+        // Shared Theme Logic
         const themeBtn = document.getElementById('theme-toggle');
         const body = document.body;
-        
-        // Check for saved theme preference or default to dark
         const savedTheme = localStorage.getItem('theme') || 'dark';
         body.setAttribute('data-theme', savedTheme);
         updateThemeBtn(savedTheme);
