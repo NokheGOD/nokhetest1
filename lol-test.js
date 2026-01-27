@@ -91,30 +91,30 @@ function renderSurvey() {
     const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
     progressBar.style.width = `${progressPercent}%`;
 
-    let surveyHtml = "
-        <div class=\"question-card fade-in\">
-            <p class=\"question-text\">Q" + (currentQuestionIndex + 1) + ". " + q.question + "</p>
-            <div class=\"options\">
-    ";
+    let surveyHtml = `
+        <div class="question-card fade-in">
+            <p class="question-text">Q${currentQuestionIndex + 1}. ${q.question}</p>
+            <div class="options">
+    `;
     
     // Shuffle options to not always show positions in same order? 
     // Maybe keeps it ordered for consistency in logic, but UI-wise random might be better.
     // For now, keep fixed order as defined in object keys (usually insertion order).
     
     for (const key in q.options) {
-        surveyHtml += "
-            <label class=\"option-label\" onclick=\"selectOption('\"" + key + "\"')\">
-                <input type=\"radio\" name=\"question\" value=\"" + key + "\">
-                <span class=\"custom-radio\"></span>
-                <span class=\"option-text\">" + q.options[key] + "</span>
+        surveyHtml += `
+            <label class="option-label" onclick="selectOption('${key}')">
+                <input type="radio" name="question" value="${key}">
+                <span class="custom-radio"></span>
+                <span class="option-text">${q.options[key]}</span>
             </label>
-        ";
+        `;
     }
     
-    surveyHtml += "
+    surveyHtml += `
             </div>
         </div>
-    ";
+    `;
     surveyContainer.innerHTML = surveyHtml;
 }
 
