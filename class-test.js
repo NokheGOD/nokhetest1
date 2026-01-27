@@ -179,7 +179,16 @@ function showResult() {
     const resultKey = calculateResult();
     const resultData = resultDescriptions[resultKey];
 
-    classType.textContent = resultData.title;
+    // Split title by parenthesis for line break
+    if (resultData.title.includes('(')) {
+        const parts = resultData.title.split('(');
+        const mainText = parts[0].trim();
+        const subText = '(' + parts[1];
+        classType.innerHTML = `<span class="result-main">${mainText}</span><span class="result-sub">${subText}</span>`;
+    } else {
+        classType.textContent = resultData.title;
+    }
+
     classDesc.textContent = resultData.desc;
     
     surveyContainer.innerHTML = '';
