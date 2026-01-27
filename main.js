@@ -48,6 +48,7 @@ const translations = {
 let currentLang = 'ko'; 
 let currentQuestionIndex = 0;
 let userAnswers = {};
+let isTransitioning = false;
 
 const surveyContainer = document.getElementById('survey-container');
 const resultContainer = document.getElementById('result-container');
@@ -99,12 +100,16 @@ function renderSurvey() {
 
 // Global function to handle option selection
 window.selectOption = function(value) {
+    if (isTransitioning) return; // Prevent double-clicks
+    isTransitioning = true;
+    
     userAnswers[currentQuestionIndex] = value;
     
     // Slight delay for visual feedback
     setTimeout(() => {
         currentQuestionIndex++;
         renderSurvey();
+        isTransitioning = false;
     }, 300);
 };
 

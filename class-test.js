@@ -93,6 +93,7 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let userAnswers = {};
+let isTransitioning = false;
 
 const surveyContainer = document.getElementById('survey-container');
 const resultContainer = document.getElementById('result-container');
@@ -135,11 +136,15 @@ function renderSurvey() {
 }
 
 window.selectOption = function(value) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
     userAnswers[currentQuestionIndex] = value;
     
     setTimeout(() => {
         currentQuestionIndex++;
         renderSurvey();
+        isTransitioning = false;
     }, 300);
 };
 
