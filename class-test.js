@@ -34,57 +34,120 @@ const questions = [
             rogue: "능숙한 손놀림으로 자물쇠를 딴다.",
             healer: "저주가 걸려있지 않은지 정화부터 한다."
         }
+    },
+    {
+        question: "새로운 기술을 배울 기회가 생겼다. 무엇을 배울까?",
+        options: {
+            warrior: "더 강한 파괴력을 가진 필살기",
+            mage: "고대 언어로 된 새로운 주문",
+            rogue: "발자국 소리를 없애는 은신술",
+            healer: "모두를 한 번에 치유하는 기적"
+        }
+    },
+    {
+        question: "강력한 보스 몬스터와의 대결! 당신의 전략은?",
+        options: {
+            warrior: "보스의 시선을 끌며 정면 승부한다.",
+            mage: "멀리서 강력한 마법 폭격을 퍼붓는다.",
+            rogue: "보스의 등 뒤로 돌아가 급소를 노린다.",
+            healer: "파티원의 체력을 유지하며 버틴다."
+        }
+    },
+    {
+        question: "마을에서 휴식을 취할 때 당신은?",
+        options: {
+            warrior: "대련장에 가서 몸을 푼다.",
+            mage: "도서관에서 마법 서적을 읽는다.",
+            rogue: "주점에서 정보를 수집(하거나 돈을 딴)한다.",
+            healer: "성당이나 신전에서 기도를 드린다."
+        }
+    },
+    {
+        question: "모험을 떠나는 이유는 무엇인가요?",
+        options: {
+            warrior: "나의 힘을 증명하고 명예를 얻기 위해",
+            mage: "세상의 모든 지식과 진리를 탐구하기 위해",
+            rogue: "엄청난 보물과 부를 얻기 위해",
+            healer: "고통받는 사람들을 구원하기 위해"
+        }
+    },
+    {
+        question: "길이 막혀있다. 어떻게 할까?",
+        options: {
+            warrior: "힘으로 장애물을 밀어버린다.",
+            mage: "텔레포트 마법으로 건너간다.",
+            rogue: "벽을 타고 넘어가거나 개구멍을 찾는다.",
+            healer: "지나가는 사람에게 도움을 요청한다."
+        }
+    },
+    {
+        question: "선호하는 방어구 스타일은?",
+        options: {
+            warrior: "전신을 감싸는 튼튼한 판금 갑옷",
+            mage: "화려한 문양이 수놓아진 로브",
+            rogue: "움직임이 편한 가죽 갑옷",
+            healer: "성스러운 기운이 깃든 사제복"
+        }
     }
 ];
 
+let currentQuestionIndex = 0;
+let userAnswers = {};
+
 const surveyContainer = document.getElementById('survey-container');
-const submitBtn = document.getElementById('submit-btn');
 const resultContainer = document.getElementById('result-container');
 const classType = document.getElementById('class-type');
 const classDesc = document.getElementById('class-desc');
-
-let userAnswers = {};
+const progressBar = document.getElementById('progress-bar');
 
 function renderSurvey() {
-    let surveyHtml = '';
-    questions.forEach((q, index) => {
-        surveyHtml += `
-            <div class="question-card" style="animation-delay: ${index * 0.1}s">
-                <p class="question-text">Q${index + 1}. ${q.question}</p>
-                <div class="options">
-        `;
-        for (const key in q.options) {
-            surveyHtml += `
-                <label class="option-label">
-                    <input type="radio" name="question${index}" value="${key}">
-                    <span class="custom-radio"></span>
-                    <span class="option-text">${q.options[key]}</span>
-                </label>
-            `;
-        }
-        surveyHtml += `
-                </div>
-            </div>
-        `;
-    });
-    surveyContainer.innerHTML = surveyHtml;
+    // Check if finished
+    if (currentQuestionIndex >= questions.length) {
+        showResult();
+        return;
+    }
 
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            const questionIndex = e.target.name.replace('question', '');
-            userAnswers[questionIndex] = e.target.value;
-        });
-    });
+    const q = questions[currentQuestionIndex];
+    const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+
+    let surveyHtml = `
+        <div class="question-card fade-in">
+            <p class="question-text">Q${currentQuestionIndex + 1}. ${q.question}</p>
+            <div class="options">
+    `;
+    
+    for (const key in q.options) {
+        surveyHtml += `
+            <label class="option-label" onclick="selectOption('${key}')">
+                <input type="radio" name="question" value="${key}">
+                <span class="custom-radio"></span>
+                <span class="option-text">${q.options[key]}</span>
+            </label>
+        `;
+    }
+    
+    surveyHtml += `
+            </div>
+        </div>
+    `;
+    surveyContainer.innerHTML = surveyHtml;
 }
+
+window.selectOption = function(value) {
+    userAnswers[currentQuestionIndex] = value;
+    
+    setTimeout(() => {
+        currentQuestionIndex++;
+        renderSurvey();
+    }, 300);
+};
 
 function calculateResult() {
     const scores = { warrior: 0, mage: 0, rogue: 0, healer: 0 };
-    
     for (const key in userAnswers) {
         scores[userAnswers[key]]++;
     }
-
-    // Find the key with the highest score
     return Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 }
 
@@ -107,23 +170,20 @@ const resultDescriptions = {
     }
 };
 
-submitBtn.addEventListener('click', () => {
-    if (Object.keys(userAnswers).length < questions.length) {
-        alert("모든 질문에 답해주세요!");
-        return;
-    }
-
+function showResult() {
     const resultKey = calculateResult();
     const resultData = resultDescriptions[resultKey];
 
     classType.textContent = resultData.title;
     classDesc.textContent = resultData.desc;
     
+    surveyContainer.innerHTML = '';
+    progressBar.parentElement.style.display = 'none';
+    
     resultContainer.style.display = 'block';
     resultContainer.scrollIntoView({ behavior: 'smooth' });
-});
+}
 
-// Initial Render
 document.addEventListener('DOMContentLoaded', () => {
     renderSurvey();
 });

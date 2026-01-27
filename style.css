@@ -64,11 +64,65 @@ body {
     font-weight: 700;
     font-size: 0.9rem;
     transition: color 0.2s;
+    cursor: pointer; /* Ensure pointer for dropdown trigger */
 }
 
 .nav-link:hover, .nav-link.active {
     color: var(--accent-color);
 }
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none; /* Fallback for older browsers */
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  background-color: var(--card-bg);
+  min-width: 180px;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-content a {
+  color: var(--text-main);
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(128, 128, 128, 0.1);
+  color: var(--accent-color);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 
 .controls button {
     background: transparent;
@@ -126,11 +180,15 @@ h1 {
     margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
-    animation: fadeInUp 0.5s ease backwards;
+    /* Animation is handled by JS now for transitions */
+}
+
+.fade-in {
+    animation: fadeInUp 0.4s ease forwards;
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -196,6 +254,24 @@ h1 {
     font-weight: 700;
 }
 
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    background-color: var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    height: 6px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--accent-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+
 /* Buttons */
 #submit-btn, #send-btn {
     width: 100%;
@@ -260,7 +336,7 @@ h1 {
     box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
 }
 
-#mbti-type {
+#mbti-type, #class-type, #result-type {
     font-size: 4rem;
     margin: 0;
     font-weight: 900;
