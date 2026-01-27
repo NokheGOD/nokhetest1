@@ -1,92 +1,57 @@
 const questions = [
     {
-        question: "몬스터가 나타났다! 당신의 첫 반응은?",
+        question: "새로운 팀 프로젝트를 시작할 때, 당신의 모습은?",
         options: {
-            warrior: "검을 뽑아들고 앞장서서 돌진한다.",
-            mage: "뒤로 물러나 약점을 분석하고 주문을 외운다.",
-            rogue: "그림자 속으로 숨어 기습할 기회를 노린다.",
-            healer: "동료들의 상태를 살피고 보호막을 준비한다."
+            garen: "팀의 기강을 잡고 정해진 규칙대로 이끈다.",
+            ahri: "사람들의 반응을 살피며 유연하게 분위기를 주도한다.",
+            yasuo: "나에게 주어진 역할만 완벽하게 수행하고 싶다.",
+            lux: "긍정적인 에너지를 전하며 모두가 즐겁게 일하도록 돕는다.",
+            zed: "가장 빠르고 효율적으로 목표를 달성할 방법을 찾는다.",
+            soraka: "팀원들이 힘들어하는 부분은 없는지 챙기며 돕는다."
         }
     },
     {
-        question: "당신이 가장 선호하는 무기는?",
+        question: "갈등 상황이 발생했을 때 당신의 대처법은?",
         options: {
-            warrior: "묵직하고 강력한 대검",
-            mage: "마력이 깃든 지팡이",
-            rogue: "가볍고 날카로운 단검",
-            healer: "신성한 기운이 감도는 메이스"
+            garen: "무엇이 옳고 그른지 명확히 따져서 해결한다.",
+            ahri: "적절한 타협안을 제시하며 상황을 부드럽게 넘긴다.",
+            yasuo: "복잡한 건 딱 질색, 그냥 내 방식대로 밀고 나간다.",
+            lux: "웃음으로 분위기를 풀며 화해를 유도한다.",
+            zed: "감정은 배제하고 문제의 근본적인 원인부터 제거한다.",
+            soraka: "상대방의 마음을 먼저 위로하고 이야기를 들어준다."
         }
     },
     {
-        question: "파티에서 당신의 역할은 무엇인가요?",
+        question: "주말을 보내는 가장 선호하는 방식은?",
         options: {
-            warrior: "내가 모든 공격을 받아낼게! 탱커",
-            mage: "한방에 쓸어버리겠어! 광역 딜러",
-            rogue: "중요한 목표만 암살한다. 단일 딜러",
-            healer: "다치지 마세요! 힐러 및 서포터"
+            garen: "규칙적인 생활을 유지하며 자기계발을 한다.",
+            ahri: "사람들과 어울리며 즐거운 시간을 보낸다.",
+            yasuo: "혼자만의 공간에서 방해받지 않고 자유를 즐긴다.",
+            lux: "밝은 야외에서 새로운 경험을 하며 에너지를 얻는다.",
+            zed: "철저한 계획 하에 목표했던 취미 활동을 끝낸다.",
+            soraka: "편안한 환경에서 누군가를 돕거나 봉사하며 보람을 느낀다."
         }
     },
     {
-        question: "보물 상자를 발견했다! 어떻게 할까?",
+        question: "누군가 당신에게 무리한 부탁을 한다면?",
         options: {
-            warrior: "함정 따위, 그냥 부숴서 연다.",
-            mage: "마법으로 잠금 장치를 해제한다.",
-            rogue: "능숙한 손놀림으로 자물쇠를 딴다.",
-            healer: "저주가 걸려있지 않은지 정화부터 한다."
+            garen: "내 원칙에 어긋난다면 단호하게 거절한다.",
+            ahri: "기분 나쁘지 않게 돌려서 거절하거나 조건을 붙인다.",
+            yasuo: "대답할 가치도 없다고 느끼면 무시한다.",
+            lux: "최대한 도와주려 노력하지만, 안 되면 미안해한다.",
+            zed: "나에게 득이 되는지 실이 되는지 따져보고 결정한다.",
+            soraka: "내가 조금 힘들더라도 상대를 위해 기꺼이 수락한다."
         }
     },
     {
-        question: "새로운 기술을 배울 기회가 생겼다. 무엇을 배울까?",
+        question: "성공을 위해 가장 중요한 덕목은 무엇이라고 생각하나?",
         options: {
-            warrior: "더 강한 파괴력을 가진 필살기",
-            mage: "고대 언어로 된 새로운 주문",
-            rogue: "발자국 소리를 없애는 은신술",
-            healer: "모두를 한 번에 치유하는 기적"
-        }
-    },
-    {
-        question: "강력한 보스 몬스터와의 대결! 당신의 전략은?",
-        options: {
-            warrior: "보스의 시선을 끌며 정면 승부한다.",
-            mage: "멀리서 강력한 마법 폭격을 퍼붓는다.",
-            rogue: "보스의 등 뒤로 돌아가 급소를 노린다.",
-            healer: "파티원의 체력을 유지하며 버틴다."
-        }
-    },
-    {
-        question: "마을에서 휴식을 취할 때 당신은?",
-        options: {
-            warrior: "대련장에 가서 몸을 푼다.",
-            mage: "도서관에서 마법 서적을 읽는다.",
-            rogue: "주점에서 정보를 수집(하거나 돈을 딴)한다.",
-            healer: "성당이나 신전에서 기도를 드린다."
-        }
-    },
-    {
-        question: "모험을 떠나는 이유는 무엇인가요?",
-        options: {
-            warrior: "나의 힘을 증명하고 명예를 얻기 위해",
-            mage: "세상의 모든 지식과 진리를 탐구하기 위해",
-            rogue: "엄청난 보물과 부를 얻기 위해",
-            healer: "고통받는 사람들을 구원하기 위해"
-        }
-    },
-    {
-        question: "길이 막혀있다. 어떻게 할까?",
-        options: {
-            warrior: "힘으로 장애물을 밀어버린다.",
-            mage: "텔레포트 마법으로 건너간다.",
-            rogue: "벽을 타고 넘어가거나 개구멍을 찾는다.",
-            healer: "지나가는 사람에게 도움을 요청한다."
-        }
-    },
-    {
-        question: "선호하는 방어구 스타일은?",
-        options: {
-            warrior: "전신을 감싸는 튼튼한 판금 갑옷",
-            mage: "화려한 문양이 수놓아진 로브",
-            rogue: "움직임이 편한 가죽 갑옷",
-            healer: "성스러운 기운이 깃든 사제복"
+            garen: "흔들리지 않는 신념과 정의감",
+            ahri: "상황을 읽는 통찰력과 매력",
+            yasuo: "누구도 따라올 수 없는 압도적인 실력",
+            lux: "함께하는 사람들과의 소통과 긍정",
+            zed: "감정에 휘둘리지 않는 냉철한 결단력",
+            soraka: "타인을 향한 헌신과 포용력"
         }
     }
 ];
@@ -102,7 +67,6 @@ const classDesc = document.getElementById('class-desc');
 const progressBar = document.getElementById('progress-bar');
 
 function renderSurvey() {
-    // Check if finished
     if (currentQuestionIndex >= questions.length) {
         showResult();
         return;
@@ -149,7 +113,7 @@ window.selectOption = function(value) {
 };
 
 function calculateResult() {
-    const scores = { warrior: 0, mage: 0, rogue: 0, healer: 0 };
+    const scores = { garen: 0, ahri: 0, yasuo: 0, lux: 0, zed: 0, soraka: 0 };
     for (const key in userAnswers) {
         scores[userAnswers[key]]++;
     }
@@ -157,21 +121,29 @@ function calculateResult() {
 }
 
 const resultDescriptions = {
-    warrior: {
-        title: "용맹한 전사 (Warrior)",
-        desc: "당신은 두려움을 모르는 선봉장입니다. 강한 체력과 리더십으로 동료를 이끌며, 어떤 역경에도 굴하지 않고 맞서 싸웁니다."
+    garen: {
+        title: "데마시아의 힘, 가렌 (Garen)",
+        desc: "당신은 정의롭고 우직하며, 자신의 신념을 끝까지 지키는 강직한 성격입니다. 규칙과 원칙을 중시하며, 공동체를 위해 헌신하는 리더 타입입니다."
     },
-    mage: {
-        title: "지혜로운 마법사 (Mage)",
-        desc: "당신은 지식과 마법을 탐구하는 현자입니다. 냉철한 판단력으로 상황을 분석하고, 강력한 한 방으로 전세를 뒤집습니다."
+    ahri: {
+        title: "구미호, 아리 (Ahri)",
+        desc: "당신은 매력적이고 사교적이며, 어떤 상황에서도 유연하게 대처하는 능력이 탁월합니다. 독립적인 성향이 강하면서도 주변 사람들을 매료시키는 힘을 가졌습니다."
     },
-    rogue: {
-        title: "날렵한 도적 (Rogue)",
-        desc: "당신은 자유롭고 실리적인 전략가입니다. 규칙에 얽매이지 않고 임기응변에 능하며, 누구보다 빠르게 목표를 달성합니다."
+    yasuo: {
+        title: "용서받지 못한 자, 야스오 (Yasuo)",
+        desc: "당신은 자유로운 영혼의 소유자이며, 타인의 시선보다는 자신의 길을 묵묵히 가는 스타일입니다. 고독을 즐길 줄 알며 실력으로 자신을 증명하는 타입입니다."
     },
-    healer: {
-        title: "고결한 성직자 (Healer)",
-        desc: "당신은 타인을 위하는 따뜻한 마음의 소유자입니다. 팀의 균형을 맞추고 위기 상황에서 모두를 구원하는 없어서는 안 될 존재입니다."
+    lux: {
+        title: "광명의 소녀, 럭스 (Lux)",
+        desc: "당신은 밝고 긍정적인 에너지를 가진 팀의 활력소입니다. 어려운 상황에서도 희망을 잃지 않으며, 사람들을 화합하게 만드는 특별한 재능이 있습니다."
+    },
+    zed: {
+        title: "그림자의 주인, 제드 (Zed)",
+        desc: "당신은 매우 효율적이고 냉철한 전략가입니다. 불필요한 감정 소모를 싫어하며, 목표를 위해서라면 과감하게 행동하고 결과를 만들어내는 능력자입니다."
+    },
+    soraka: {
+        title: "별의 아이, 소라카 (Soraka)",
+        desc: "당신은 따뜻한 마음과 깊은 공감 능력을 가진 치유자 타입입니다. 타인의 고통을 외면하지 못하며, 자신을 희생해서라도 소중한 사람들을 지키려 노력합니다."
     }
 };
 
@@ -179,7 +151,6 @@ function showResult() {
     const resultKey = calculateResult();
     const resultData = resultDescriptions[resultKey];
 
-    // Split title by parenthesis for line break
     if (resultData.title.includes('(')) {
         const parts = resultData.title.split('(');
         const mainText = parts[0].trim();
