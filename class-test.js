@@ -1,6 +1,6 @@
 const translations = {
     ko: {
-        title: "롤 캐릭터 성격 테스트",
+        title: "롤 캐릭터 테스트",
         resultTitle: "당신의 롤 캐릭터는:",
         questions: [
             {
