@@ -164,6 +164,7 @@ h1 {
     background: linear-gradient(90deg, var(--text-main), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    word-break: keep-all;
 }
 
 .subtitle {
