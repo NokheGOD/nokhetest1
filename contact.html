@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -65,15 +69,15 @@
     <script>
         // Shared Theme Logic
         const themeBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        body.setAttribute('data-theme', savedTheme);
-        updateThemeBtn(savedTheme);
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute('data-theme');
+        
+        updateThemeBtn(currentTheme);
 
         function toggleTheme() {
-            const currentTheme = body.getAttribute('data-theme');
+            const currentTheme = root.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', newTheme);
+            root.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeBtn(newTheme);
         }
@@ -81,43 +85,6 @@
         function updateThemeBtn(theme) {
             themeBtn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
         }
-
-        // Contact Form Logic
-        const form = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-        
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = new FormData(e.target);
-            const submitBtn = document.getElementById('send-btn');
-            
-            submitBtn.disabled = true;
-            submitBtn.textContent = '전송 중...';
-            
-            // Using the same Formspree ID
-            fetch('https://formspree.io/f/xzdelnob', {
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    formStatus.textContent = "메시지가 성공적으로 전송되었습니다!";
-                    formStatus.style.color = "var(--accent-color)";
-                    form.reset();
-                } else {
-                    formStatus.textContent = "전송 실패. 다시 시도해주세요.";
-                    formStatus.style.color = "#ff4d4d";
-                }
-            }).catch(error => {
-                formStatus.textContent = "오류가 발생했습니다.";
-                formStatus.style.color = "#ff4d4d";
-            }).finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = '보내기';
-            });
-        });
     </script>
 </body>
 </html>

@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </head>
 <body>
     <nav class="navbar">
@@ -73,15 +77,15 @@
     <script>
         // Shared Theme Logic
         const themeBtn = document.getElementById('theme-toggle');
-        const body = document.body;
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        body.setAttribute('data-theme', savedTheme);
-        updateThemeBtn(savedTheme);
+        const root = document.documentElement;
+        const currentTheme = root.getAttribute('data-theme');
+        
+        updateThemeBtn(currentTheme);
 
         function toggleTheme() {
-            const currentTheme = body.getAttribute('data-theme');
+            const currentTheme = root.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', newTheme);
+            root.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeBtn(newTheme);
         }
