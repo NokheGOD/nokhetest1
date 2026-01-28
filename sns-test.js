@@ -332,7 +332,7 @@ window.toggleLanguage = () => {
 
 function updateLangBtnText() {
     const btn = document.getElementById('lang-toggle');
-    if(btn) btn.textContent = currentLang === 'en' ? '한글' : 'English';
+    if(btn) btn.textContent = currentLang === 'en' ? 'KR' : 'EN';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
