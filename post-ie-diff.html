@@ -39,17 +39,18 @@
         <div class="logo"><a href="index.html" style="text-decoration: none; color: var(--accent-color);">TEST</a></div>
         <div class="controls">
             <div class="dropdown">
-                <a href="#" class="nav-link">TESTS ▾</a>
+                <a href="#" class="nav-link" data-i18n="nav-tests">TESTS ▾</a>
                 <div class="dropdown-content">
-                    <a href="index.html">MBTI 성격 검사</a>
-                    <a href="coffee-test.html">커피 성격 테스트</a>
-                    <a href="sns-test.html">SNS 성격 테스트</a>
-                    <a href="kpop-position-test.html">K-POP 포지션 테스트</a>
-                    <a href="kpop-concept-test.html">데뷔 컨셉 테스트</a>
+                    <a href="index.html" data-i18n="nav-mbti">MBTI 성격 검사</a>
+                    <a href="coffee-test.html" data-i18n="nav-coffee">커피 성격 테스트</a>
+                    <a href="sns-test.html" data-i18n="nav-sns">SNS 성격 테스트</a>
+                    <a href="kpop-position-test.html" data-i18n="nav-kpop-pos">K-POP 포지션 테스트</a>
+                    <a href="kpop-concept-test.html" data-i18n="nav-kpop-con">데뷔 컨셉 테스트</a>
                 </div>
             </div>
-            <a href="blog.html" class="nav-link active">BLOG</a>
-            <a href="contact.html" class="nav-link">CONTACT</a>
+            <a href="blog.html" class="nav-link active" data-i18n="nav-blog">BLOG</a>
+            <a href="contact.html" class="nav-link" data-i18n="nav-contact">CONTACT</a>
+            <button id="lang-toggle" onclick="toggleLanguage()">EN</button>
             <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
         </div>
     </nav>
@@ -119,16 +120,44 @@
         <p>&copy; 2026 TEST. All rights reserved.</p>
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="contact.html" data-i18n="footer-contact">Contact Us</a>
         </div>
     </footer>
     
     <script>
-        // Shared Theme Logic
+        // Translations
+        const translations = {
+            en: {
+                "nav-tests": "TESTS ▾",
+                "nav-mbti": "MBTI Personality Test",
+                "nav-coffee": "Coffee Personality Test",
+                "nav-sns": "SNS Personality Test",
+                "nav-kpop-pos": "K-POP Position Test",
+                "nav-kpop-con": "Debut Concept Test",
+                "nav-blog": "BLOG",
+                "nav-contact": "CONTACT",
+                "footer-contact": "Contact Us"
+            },
+            ko: {
+                "nav-tests": "테스트 ▾",
+                "nav-mbti": "MBTI 성격 검사",
+                "nav-coffee": "커피 성격 테스트",
+                "nav-sns": "SNS 성격 테스트",
+                "nav-kpop-pos": "K-POP 포지션 테스트",
+                "nav-kpop-con": "데뷔 컨셉 테스트",
+                "nav-blog": "블로그",
+                "nav-contact": "문의하기",
+                "footer-contact": "문의하기"
+            }
+        };
+
+        // Theme Logic
         const themeBtn = document.getElementById('theme-toggle');
         const root = document.documentElement;
-        const currentTheme = root.getAttribute('data-theme');
         
+        // Initial Theme Load
+        const currentTheme = root.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
+        root.setAttribute('data-theme', currentTheme);
         updateThemeBtn(currentTheme);
 
         function toggleTheme() {
@@ -141,6 +170,33 @@
 
         function updateThemeBtn(theme) {
             themeBtn.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+        }
+
+        // Language Logic
+        const langBtn = document.getElementById('lang-toggle');
+        
+        // Initial Language Load
+        const savedLang = localStorage.getItem('lang') || 'ko'; 
+        applyLanguage(savedLang);
+
+        function toggleLanguage() {
+            const currentLang = root.getAttribute('lang') || 'ko';
+            const newLang = currentLang === 'ko' ? 'en' : 'ko';
+            applyLanguage(newLang);
+        }
+
+        function applyLanguage(lang) {
+            root.setAttribute('lang', lang);
+            localStorage.setItem('lang', lang);
+            if(langBtn) langBtn.textContent = lang === 'en' ? 'KR' : 'EN';
+            
+            const t = translations[lang];
+            
+            // Update Text Content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
         }
     </script>
 </body>
