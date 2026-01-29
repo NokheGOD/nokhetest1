@@ -2,6 +2,22 @@ const translations = {
     en: {
         title: "MBTI Survey",
         resultTitle: "Your MBTI Type is:",
+        "nav-tests": "TESTS ▾",
+        "nav-mbti": "MBTI Personality Test",
+        "nav-coffee": "Coffee Personality Test",
+        "nav-sns": "SNS Personality Test",
+        "nav-kpop-pos": "K-POP Position Test",
+        "nav-kpop-con": "Debut Concept Test",
+        "nav-blog": "BLOG",
+        "nav-contact": "CONTACT",
+        "footer-contact": "Contact Us",
+        "page-title": "MBTI Personality Test",
+        "page-subtitle": "Find your true self in 1 minute.",
+        "result-title": "Your MBTI Type is:",
+        "form-guide": "Do you want to save your result via email?",
+        "placeholder-email": "your@email.com",
+        "btn-send": "Send Result",
+        "retry-btn": "Retry",
         questions: [
             // E vs I
             { question: "At a party, I...", options: { E: "Talk to many people, including strangers", I: "Stick with people I know" } },
@@ -24,6 +40,22 @@ const translations = {
     ko: {
         title: "MBTI 성격 유형 검사",
         resultTitle: "당신의 MBTI 유형은:",
+        "nav-tests": "테스트 ▾",
+        "nav-mbti": "MBTI 성격 검사",
+        "nav-coffee": "커피 성격 테스트",
+        "nav-sns": "SNS 성격 테스트",
+        "nav-kpop-pos": "K-POP 포지션 테스트",
+        "nav-kpop-con": "데뷔 컨셉 테스트",
+        "nav-blog": "블로그",
+        "nav-contact": "문의하기",
+        "footer-contact": "문의하기",
+        "page-title": "MBTI 성격 유형 검사",
+        "page-subtitle": "1분 만에 당신의 진짜 모습을 찾아보세요.",
+        "result-title": "당신의 MBTI 유형은:",
+        "form-guide": "결과를 이메일로 받아보거나 저장하시겠습니까?",
+        "placeholder-email": "your@email.com",
+        "btn-send": "결과 전송하기",
+        "retry-btn": "다시 하기",
         questions: [
             // E vs I
             { question: "주말에 갑자기 잡혀있던 약속이 취소되었다면?", options: { E: "아쉽다. 다른 친구에게 연락해볼까?", I: "오히려 좋아! 집에서 푹 쉬어야지." } },
@@ -45,7 +77,7 @@ const translations = {
     }
 };
 
-let currentLang = 'ko'; 
+let currentLang = localStorage.getItem('lang') || 'ko';
 let currentQuestionIndex = 0;
 let userAnswers = {};
 let isTransitioning = false;
@@ -56,13 +88,37 @@ const mbtiType = document.getElementById('mbti-type');
 const mainTitle = document.querySelector('h1');
 const resultTitleText = document.querySelector('#result-container h2');
 const progressBar = document.getElementById('progress-bar');
+const langBtn = document.getElementById('lang-toggle');
+const root = document.documentElement;
+
+// Initialize language on load
+document.documentElement.setAttribute('lang', currentLang);
+
+function updateUIText(lang) {
+    const t = translations[lang];
+    
+    // Update Text Content for data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+    });
+    
+    // Update Placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) el.placeholder = t[key];
+    });
+
+    // Update Lang Button
+    if(langBtn) langBtn.textContent = lang === 'en' ? 'KR' : 'EN';
+}
 
 function renderSurvey() {
     const t = translations[currentLang];
     
-    // Update static text
-    mainTitle.textContent = t.title;
-    resultTitleText.textContent = t.resultTitle;
+    // Update static text (managed by data-i18n mostly now, but keeping for safety if data-i18n missing on these)
+    // mainTitle.textContent = t.title; // Removed as h1 has data-i18n="page-title"
+    // resultTitleText.textContent = t.resultTitle; // Removed as h2 has data-i18n="result-title"
 
     // Check if finished
     if (currentQuestionIndex >= t.questions.length) {
@@ -179,19 +235,17 @@ if (resultForm) {
 
 window.toggleLanguage = () => {
     currentLang = currentLang === 'en' ? 'ko' : 'en';
-    // Reset test when changing language for consistency, or just translate current question?
-    // For simplicity, let's keep the index but the questions text changes.
-    // However, if the user was mid-test, the text changes.
+    localStorage.setItem('lang', currentLang);
+    root.setAttribute('lang', currentLang);
+    
+    // Update UI elements
+    updateUIText(currentLang);
+    
+    // Re-render survey (translating current question)
     renderSurvey();
-    updateLangBtnText();
 };
 
-function updateLangBtnText() {
-    const btn = document.getElementById('lang-toggle');
-    if(btn) btn.textContent = currentLang === 'en' ? 'KR' : 'EN';
-}
-
 document.addEventListener('DOMContentLoaded', () => {
+    updateUIText(currentLang);
     renderSurvey();
-    updateLangBtnText();
 });

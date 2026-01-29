@@ -39,17 +39,17 @@
         <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">TEST</a></div>
         <div class="controls">
             <div class="dropdown">
-                <a href="#" class="nav-link">TESTS ▾</a>
+                <a href="#" class="nav-link" data-i18n="nav-tests">TESTS ▾</a>
                 <div class="dropdown-content">
-                    <a href="index.html">MBTI 성격 검사</a>
-                    <a href="coffee-test.html">커피 성격 테스트</a>
-                    <a href="sns-test.html">SNS 성격 테스트</a>
-                    <a href="kpop-position-test.html">K-POP 포지션 테스트</a>
-                    <a href="kpop-concept-test.html">데뷔 컨셉 테스트</a>
+                    <a href="index.html" data-i18n="nav-mbti">MBTI 성격 검사</a>
+                    <a href="coffee-test.html" data-i18n="nav-coffee">커피 성격 테스트</a>
+                    <a href="sns-test.html" data-i18n="nav-sns">SNS 성격 테스트</a>
+                    <a href="kpop-position-test.html" data-i18n="nav-kpop-pos">K-POP 포지션 테스트</a>
+                    <a href="kpop-concept-test.html" data-i18n="nav-kpop-con">데뷔 컨셉 테스트</a>
                 </div>
             </div>
-            <a href="blog.html" class="nav-link">BLOG</a>
-            <a href="contact.html" class="nav-link">CONTACT</a>
+            <a href="blog.html" class="nav-link" data-i18n="nav-blog">BLOG</a>
+            <a href="contact.html" class="nav-link" data-i18n="nav-contact">CONTACT</a>
             <button id="lang-toggle" onclick="toggleLanguage()">EN</button>
             <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
         </div>
@@ -57,8 +57,8 @@
 
     <div class="container">
         <header>
-            <h1>MBTI 성격 유형 검사</h1>
-            <p class="subtitle">Find your true self in 1 minute.</p>
+            <h1 data-i18n="page-title">MBTI 성격 유형 검사</h1>
+            <p class="subtitle" data-i18n="page-subtitle">Find your true self in 1 minute.</p>
         </header>
         
         <div class="progress-container">
@@ -70,24 +70,24 @@
         <!-- Submit button removed for single-question flow -->
         
         <div id="result-container" style="display: none;">
-            <h2>당신의 MBTI 유형은:</h2>
+            <h2 data-i18n="result-title">당신의 MBTI 유형은:</h2>
             <div class="result-box">
                 <p id="mbti-type">ENFP</p>
             </div>
             
             <!-- Formspree Submission Form -->
             <form id="result-form" class="submit-form">
-                <p class="form-guide">결과를 이메일로 받아보거나 저장하시겠습니까?</p>
+                <p class="form-guide" data-i18n="form-guide">결과를 이메일로 받아보거나 저장하시겠습니까?</p>
                 <div class="input-group">
-                    <input type="email" name="email" id="user-email" placeholder="your@email.com" required>
+                    <input type="email" name="email" id="user-email" placeholder="your@email.com" data-i18n-placeholder="placeholder-email" required>
                     <!-- MBTI 결과가 여기에 자동으로 담깁니다 -->
                     <input type="hidden" name="mbti_result" id="hidden-mbti">
-                    <button type="submit" id="send-form-btn">결과 전송하기</button>
+                    <button type="submit" id="send-form-btn" data-i18n="btn-send">결과 전송하기</button>
                 </div>
                 <p id="form-status"></p>
             </form>
 
-            <button class="retry-btn" onclick="location.reload()">다시 하기 / Retry</button>
+            <button class="retry-btn" onclick="location.reload()" data-i18n="retry-btn">다시 하기 / Retry</button>
         </div>
 
         <!-- Disqus Comments Section -->
@@ -118,17 +118,19 @@
         <p>&copy; 2026 TEST. All rights reserved.</p>
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="contact.html" data-i18n="footer-contact">Contact Us</a>
         </div>
     </footer>
 
     <script src="main.js"></script>
     <script>
-        // Simple Theme Toggle Logic inline for speed
+        // Theme Logic
         const themeBtn = document.getElementById('theme-toggle');
         const root = document.documentElement;
-        const currentTheme = root.getAttribute('data-theme');
         
+        // Initial Theme Load
+        const currentTheme = root.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
+        root.setAttribute('data-theme', currentTheme);
         updateThemeBtn(currentTheme);
 
         function toggleTheme() {

@@ -1,7 +1,19 @@
 const translations = {
     ko: {
+        "nav-tests": "테스트 ▾",
+        "nav-mbti": "MBTI 성격 검사",
+        "nav-coffee": "커피 성격 테스트",
+        "nav-sns": "SNS 성격 테스트",
+        "nav-kpop-pos": "K-POP 포지션 테스트",
+        "nav-kpop-con": "데뷔 컨셉 테스트",
+        "nav-blog": "블로그",
+        "nav-contact": "문의하기",
+        "footer-contact": "문의하기",
         title: "커피 성격 테스트",
+        subtitle: "당신의 성격을 커피 메뉴로 확인해보세요!",
         resultTitle: "당신의 커피 취향 성격은:",
+        "retry-btn": "다시 테스트하기",
+        "other-test-btn": "✨ 다른 테스트 보러 가기",
         questions: [
             {
                 question: "아침에 일어나서 가장 먼저 하는 생각은?",
@@ -114,8 +126,20 @@ const translations = {
         }
     },
     en: {
+        "nav-tests": "TESTS ▾",
+        "nav-mbti": "MBTI Personality Test",
+        "nav-coffee": "Coffee Personality Test",
+        "nav-sns": "SNS Personality Test",
+        "nav-kpop-pos": "K-POP Position Test",
+        "nav-kpop-con": "Debut Concept Test",
+        "nav-blog": "BLOG",
+        "nav-contact": "CONTACT",
+        "footer-contact": "Contact Us",
         title: "Coffee Personality Test",
+        subtitle: "Find out your personality through coffee menu!",
         resultTitle: "Your Coffee Personality is:",
+        "retry-btn": "Retry",
+        "other-test-btn": "✨ Check other tests",
         questions: [
             {
                 question: "What is your first thought in the morning?",
@@ -229,7 +253,7 @@ const translations = {
     }
 };
 
-let currentLang = 'ko';
+let currentLang = localStorage.getItem('lang') || 'ko';
 let currentQuestionIndex = 0;
 let userAnswers = {};
 let isTransitioning = false;
@@ -239,14 +263,31 @@ const resultContainer = document.getElementById('result-container');
 const resultType = document.getElementById('result-type');
 const resultDesc = document.getElementById('result-desc');
 const progressBar = document.getElementById('progress-bar');
-const mainTitle = document.querySelector('header h1');
-const resultTitleHeader = document.querySelector('#result-container h2');
+const langBtn = document.getElementById('lang-toggle');
+const root = document.documentElement;
+
+// Initialize language
+document.documentElement.setAttribute('lang', currentLang);
+
+function updateUIText(lang) {
+    const t = translations[lang];
+    
+    // Update Text Content for data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+    });
+
+    // Update Lang Button
+    if(langBtn) langBtn.textContent = lang === 'en' ? 'KR' : 'EN';
+}
 
 function renderSurvey() {
     const t = translations[currentLang];
 
-    if(mainTitle) mainTitle.textContent = t.title;
-    if(resultTitleHeader) resultTitleHeader.textContent = t.resultTitle;
+    // Static text update (optional now if data-i18n is used, but keeping for safety)
+    // if(mainTitle) mainTitle.textContent = t.title; 
+    // if(resultTitleHeader) resultTitleHeader.textContent = t.resultTitle;
 
     if (currentQuestionIndex >= t.questions.length) {
         showResult();
@@ -326,16 +367,21 @@ function showResult() {
 
 window.toggleLanguage = () => {
     currentLang = currentLang === 'en' ? 'ko' : 'en';
+    localStorage.setItem('lang', currentLang);
+    root.setAttribute('lang', currentLang);
+    
+    updateUIText(currentLang);
     renderSurvey();
-    updateLangBtnText();
 };
 
 function updateLangBtnText() {
+    // This function is redundant now as updateUIText handles it, but keeping for safety if called elsewhere?
+    // Actually, let's just make it call updateUIText or be empty.
     const btn = document.getElementById('lang-toggle');
     if(btn) btn.textContent = currentLang === 'en' ? 'KR' : 'EN';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    updateUIText(currentLang);
     renderSurvey();
-    updateLangBtnText();
 });

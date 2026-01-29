@@ -38,17 +38,17 @@
         <div class="logo"><a href="index.html" style="text-decoration: none; color: var(--accent-color);">TEST</a></div>
         <div class="controls">
             <div class="dropdown">
-                <a href="#" class="nav-link">TESTS ▾</a>
+                <a href="#" class="nav-link" data-i18n="nav-tests">TESTS ▾</a>
                 <div class="dropdown-content">
-                    <a href="index.html">MBTI 성격 검사</a>
-                    <a href="coffee-test.html">커피 성격 테스트</a>
-                    <a href="sns-test.html">SNS 성격 테스트</a>
-                    <a href="kpop-position-test.html">K-POP 포지션 테스트</a>
-                    <a href="kpop-concept-test.html">데뷔 컨셉 테스트</a>
+                    <a href="index.html" data-i18n="nav-mbti">MBTI 성격 검사</a>
+                    <a href="coffee-test.html" data-i18n="nav-coffee">커피 성격 테스트</a>
+                    <a href="sns-test.html" data-i18n="nav-sns">SNS 성격 테스트</a>
+                    <a href="kpop-position-test.html" data-i18n="nav-kpop-pos">K-POP 포지션 테스트</a>
+                    <a href="kpop-concept-test.html" data-i18n="nav-kpop-con">데뷔 컨셉 테스트</a>
                 </div>
             </div>
-            <a href="blog.html" class="nav-link">BLOG</a>
-            <a href="contact.html" class="nav-link">CONTACT</a>
+            <a href="blog.html" class="nav-link" data-i18n="nav-blog">BLOG</a>
+            <a href="contact.html" class="nav-link" data-i18n="nav-contact">CONTACT</a>
             <button id="lang-toggle" onclick="toggleLanguage()">EN</button>
             <button id="theme-toggle" onclick="toggleTheme()">DARK</button>
         </div>
@@ -56,8 +56,8 @@
 
     <div class="container">
         <header>
-            <h1>나와 어울리는 커피는?</h1>
-            <p class="subtitle">당신의 성격을 커피 메뉴로 확인해보세요!</p>
+            <h1 data-i18n="title">나와 어울리는 커피는?</h1>
+            <p class="subtitle" data-i18n="subtitle">당신의 성격을 커피 메뉴로 확인해보세요!</p>
         </header>
         
         <div class="progress-container">
@@ -69,14 +69,14 @@
         <!-- Submit button removed for single-question flow -->
         
         <div id="result-container" style="display: none;">
-            <h2>당신의 커피는:</h2>
+            <h2 data-i18n="resultTitle">당신의 커피는:</h2>
             <div class="result-box">
                 <p id="result-type" style="font-size: 3rem; margin-bottom: 1rem;"></p>
                 <p id="result-desc" style="font-size: 1.2rem; color: var(--text-sub); line-height: 1.6;"></p>
             </div>
             
-            <button class="retry-btn" onclick="location.reload()">다시 테스트하기 / Retry</button>
-            <button class="retry-btn" onclick="location.href='index.html'" style="margin-top: 10px; border-color: var(--accent-color); color: var(--accent-color);">✨ 다른 테스트 보러 가기</button>
+            <button class="retry-btn" onclick="location.reload()" data-i18n="retry-btn">다시 테스트하기 / Retry</button>
+            <button class="retry-btn" onclick="location.href='index.html'" style="margin-top: 10px; border-color: var(--accent-color); color: var(--accent-color);" data-i18n="other-test-btn">✨ 다른 테스트 보러 가기</button>
         </div>
 
         <!-- Comments Section -->
@@ -97,7 +97,7 @@
         <p>&copy; 2026 TEST. All rights reserved.</p>
         <div class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
-            <a href="contact.html">Contact Us</a>
+            <a href="contact.html" data-i18n="footer-contact">Contact Us</a>
         </div>
     </footer>
     
