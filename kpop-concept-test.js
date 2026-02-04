@@ -231,9 +231,6 @@ function updateUIText(lang) {
 function renderSurvey() {
     const t = translations[currentLang];
 
-    if(mainTitle) mainTitle.textContent = t.title;
-    if(resultTitleHeader) resultTitleHeader.textContent = t.resultTitle;
-
     if (currentQuestionIndex >= t.questions.length) {
         showResult();
         return;
