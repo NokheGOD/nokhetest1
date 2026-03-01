@@ -17,7 +17,7 @@ for file in html_files:
     
     # Extract canonical
     url_match = re.search(r'<link rel="canonical" href="(.*?)">', content, re.IGNORECASE)
-    url = url_match.group(1) if url_match else f"https://nokhetest1.pages.dev/{file if file != 'index.html' else ''}"
+    url = url_match.group(1) if url_match else f"https://nokhe.org/{file if file != 'index.html' else ''}"
     
     # Check if JSON-LD already exists
     if '<script type="application/ld+json">' in content:
