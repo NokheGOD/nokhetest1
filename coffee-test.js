@@ -357,19 +357,21 @@ function showResult() {
     }
 
     resultDesc.textContent = resultData.desc;
-    
+
     surveyContainer.innerHTML = '';
     progressBar.parentElement.style.display = 'none';
-    
+
     resultContainer.style.display = 'block';
     resultContainer.scrollIntoView({ behavior: 'smooth' });
+
+    initShareButtons(`나는 ${resultData.title.split('(')[0].trim()} 유형! ☕`, window.location.href);
 }
 
 window.toggleLanguage = () => {
     currentLang = currentLang === 'en' ? 'ko' : 'en';
     localStorage.setItem('lang', currentLang);
     root.setAttribute('lang', currentLang);
-    
+
     updateUIText(currentLang);
     renderSurvey();
 };

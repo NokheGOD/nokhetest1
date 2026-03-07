@@ -196,9 +196,11 @@ function showResult() {
 
     surveyContainer.innerHTML = ''; // Clear survey
     progressBar.parentElement.style.display = 'none'; // Hide progress bar
-    
+
     resultContainer.style.display = 'block';
     resultContainer.scrollIntoView({ behavior: 'smooth' });
+
+    initShareButtons(`나의 MBTI는 ${result}! 🧠`, window.location.href);
 }
 
 // Formspree Submission Logic

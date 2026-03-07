@@ -357,12 +357,14 @@ function showResult() {
     }
 
     resultDesc.textContent = resultData.desc;
-    
+
     surveyContainer.innerHTML = '';
     progressBar.parentElement.style.display = 'none';
-    
+
     resultContainer.style.display = 'block';
     resultContainer.scrollIntoView({ behavior: 'smooth' });
+
+    initShareButtons(`나의 SNS 유형은 ${resultData.title.split('(')[0].trim()}! 📱`, window.location.href);
 }
 
 window.toggleLanguage = () => {
