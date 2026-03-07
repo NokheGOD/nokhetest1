@@ -206,8 +206,8 @@
     <script>
         // Theme Logic
         const themeBtn = document.getElementById('theme-toggle');
-        const root = document.documentElement;
-        
+        // root is already declared in main.js
+
         // Initial Theme Load
         const currentTheme = root.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
         root.setAttribute('data-theme', currentTheme);
